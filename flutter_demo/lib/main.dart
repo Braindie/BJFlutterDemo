@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:english_words/english_words.dart';
+import 'BJMainList.dart';
 
 void main() => runApp(new MyApp());
 
@@ -9,20 +9,19 @@ class MyApp extends StatelessWidget {
     // final wordPair = new WordPair.random();
     return new MaterialApp(
       title: 'Welcome to Flutter',
-      home: new MyScaffold(),
-      // home: new Scaffold(
-      //   appBar: new AppBar(
-      //     title: new Text('Welcome to Flutter'),
-      //   ),
-      //   body: new Center(
-      //     child: new Text('World'),
-      //   ),
-      // ),
+      home: new MyStatefulWidget(),
     );
   }
 }
 
-class MyScaffold extends StatelessWidget {
+
+
+class MyStatefulWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -42,6 +41,14 @@ class MyScaffold extends StatelessWidget {
   ];
 
 
+  void _onItemTapped(int index) {
+    print(index);
+    print(_selectedIndex);
+    // 当我需要更新 State 的视图时，需要手动调用这个函数，它会触发 build() 。
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +58,23 @@ class MyScaffold extends StatelessWidget {
           '首页'
         ),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: new Center(
+        child: new Column(
+          children: <Widget>[
+            _widgetOptions.elementAt(_selectedIndex),
+            FlatButton(
+              child: Text("Button"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.push( context,
+                 new MaterialPageRoute(builder: (context) {
+                   return new NewRoute();
+                 })
+                );
+              },
+            )
+          ],
+        )
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -74,12 +96,6 @@ class MyScaffold extends StatelessWidget {
       ),
     );
   }
-
-  void _onItemTapped(int index) {
-    print(index);
-    print(_selectedIndex);
-    // setState(() {
-    //   _selectedIndex = index;
-    // });
-  }
 }
+
+
