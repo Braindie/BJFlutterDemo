@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'BJMainList.dart';
+import 'BJLayout/BJLayout.dart';
+import 'BJAnimation/BJAnimation.dart';
+import 'BJNetwork/BJNetwork.dart';
+import 'BJFrame/BJFrame.dart';
+import 'BJFunction/BJFunction.dart';
 
 void main() => runApp(new MyApp());
 
@@ -24,22 +28,18 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   int _selectedIndex = 0;
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
+  List<Widget> pages = List<Widget>();
 
+  @override
+    void initState() {
+      // TODO: implement initState
+      super.initState();
+      pages ..add(BJLayout()) 
+            ..add(BJAnimation())
+            ..add(BJNetwork())
+            ..add(BJFrame())
+            ..add(BJFunction());
+    }
 
   void _onItemTapped(int index) {
     print(index);
@@ -53,45 +53,75 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: new Text(
-          '首页'
-        ),
-      ),
-      body: new Center(
-        child: new Column(
-          children: <Widget>[
-            _widgetOptions.elementAt(_selectedIndex),
-            FlatButton(
-              child: Text("Button"),
-              textColor: Colors.blue,
-              onPressed: () {
-                Navigator.push( context,
-                 new MaterialPageRoute(builder: (context) {
-                   return new NewRoute();
-                 })
-                );
-              },
-            )
-          ],
-        )
-      ),
+      // body: new Center(
+      //   child: new Column(
+      //     children: <Widget>[
+      //       FlatButton(
+      //         child: Text("Button"),
+      //         textColor: Colors.blue,
+      //         onPressed: () {
+      //           Navigator.push( context,
+      //            new MaterialPageRoute(builder: (context) {
+      //              return new NewRoute();
+      //            })
+      //           );
+      //         },
+      //       )
+      //     ],
+      //   )
+      // ),
+      body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
+            icon: Icon(
+              Icons.cloud,
+            ),
+            title: Text(
+              '布局',
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('Business'),
+            icon: Icon(
+              Icons.cloud,
+            ),
+            title: Text(
+              '动画',
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('School')
+            icon: Icon(
+              Icons.cloud,
+            ),
+            title: Text(
+              '网络',
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.cloud,
+            ),
+            title: Text(
+              '架构',
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.cloud,
+            ),
+            title: Text(
+              '功能',
+            ),
           )
         ],
+        showUnselectedLabels: true,
+        selectedFontSize: 12.0,
+        unselectedFontSize: 12.0,
         currentIndex: _selectedIndex,
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.blue,
+        selectedIconTheme: IconThemeData(color: Colors.blue),
+        unselectedIconTheme: IconThemeData(color: Colors.grey),
         onTap: _onItemTapped,
       ),
     );

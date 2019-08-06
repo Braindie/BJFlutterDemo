@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 
 
-class NewRoute extends StatefulWidget {
+class BJNetwork extends StatefulWidget {
 
   @override
-  _NewRouteState createState() => _NewRouteState();
+  BJNetworkState createState() => BJNetworkState();
 }
 
-class _NewRouteState extends State<NewRoute> {
+class BJNetworkState extends State<BJNetwork> {
   var _words = [];
   String _text = "";
 
@@ -48,7 +48,7 @@ class _NewRouteState extends State<NewRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("New Route"),
+        title: Text("网络"),
       ),
       body: new ListView.builder(
         padding: new EdgeInsets.all(15.0),
