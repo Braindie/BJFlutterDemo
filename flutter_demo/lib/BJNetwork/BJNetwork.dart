@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:io';
-
+import 'BJNetworkDetail.dart';
 
 class BJNetwork extends StatefulWidget {
 
@@ -57,7 +57,18 @@ class BJNetworkState extends State<BJNetwork> {
         itemBuilder: (BuildContext context,int index){
           var objc = _words[index];
           var title = objc['title'];
-          return new Text(title);
+          return new GestureDetector(
+            onTap: () {
+              print('点击了item');
+              Navigator.push(
+                context, 
+                new MaterialPageRoute(builder: (context) => new BJNetworkDetail()),
+              );
+            },
+            child: new Container(
+              child: new Text(title),
+            ),
+          );
         },
       ),
     );

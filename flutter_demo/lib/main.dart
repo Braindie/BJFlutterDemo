@@ -32,7 +32,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
     void initState() {
-      // TODO: implement initState
       super.initState();
       pages ..add(BJLayout()) 
             ..add(BJAnimation())
@@ -52,24 +51,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // body: new Center(
-      //   child: new Column(
-      //     children: <Widget>[
-      //       FlatButton(
-      //         child: Text("Button"),
-      //         textColor: Colors.blue,
-      //         onPressed: () {
-      //           Navigator.push( context,
-      //            new MaterialPageRoute(builder: (context) {
-      //              return new NewRoute();
-      //            })
-      //           );
-      //         },
-      //       )
-      //     ],
-      //   )
-      // ),
+    return Scaffold( //Scaffold是一个路由页的骨架
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -114,6 +96,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
           )
         ],
+        type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true,
         selectedFontSize: 12.0,
         unselectedFontSize: 12.0,
