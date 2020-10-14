@@ -14,7 +14,7 @@ class BJFunctionState extends State<BJFunction> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('功能'),
+        title: Text('Func'),
       ),
     );
   }

@@ -14,7 +14,7 @@ class BJFrameState extends State<BJFrame> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('框架'),
+        title: Text('Frame'),
       ),
     );
   }

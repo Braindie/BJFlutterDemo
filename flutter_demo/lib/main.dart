@@ -18,27 +18,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
 class MyStatefulWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-
   int _selectedIndex = 0;
   List<Widget> pages = List<Widget>();
 
   @override
-    void initState() {
-      super.initState();
-      pages ..add(BJLayout()) 
-            ..add(BJAnimation())
-            ..add(BJNetwork())
-            ..add(BJFrame())
-            ..add(BJFunction());
-    }
+  void initState() {
+    super.initState();
+    pages
+      ..add(BJLayout())
+      ..add(BJAnimation())
+      ..add(BJNetwork())
+      ..add(BJFrame())
+      ..add(BJFunction());
+  }
 
   void _onItemTapped(int index) {
     print(index);
@@ -51,7 +49,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( //Scaffold是一个路由页的骨架
+    return Scaffold(
+      //Scaffold是一个路由页的骨架
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -60,7 +59,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               Icons.cloud,
             ),
             title: Text(
-              '布局',
+              'Layout',
             ),
           ),
           BottomNavigationBarItem(
@@ -68,7 +67,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               Icons.cloud,
             ),
             title: Text(
-              '动画',
+              'Draw',
             ),
           ),
           BottomNavigationBarItem(
@@ -76,7 +75,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               Icons.cloud,
             ),
             title: Text(
-              '网络',
+              'Data',
             ),
           ),
           BottomNavigationBarItem(
@@ -84,7 +83,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               Icons.cloud,
             ),
             title: Text(
-              '架构',
+              'Frame',
             ),
           ),
           BottomNavigationBarItem(
@@ -92,7 +91,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               Icons.cloud,
             ),
             title: Text(
-              '功能',
+              'Func',
             ),
           )
         ],
@@ -110,5 +109,3 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
-
-

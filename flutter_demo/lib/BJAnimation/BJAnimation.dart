@@ -14,7 +14,7 @@ class BJAnimationState extends State<BJAnimation> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('动画'),
+        title: Text('Draw'),
       ),
     );
   }

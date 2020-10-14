@@ -4,7 +4,6 @@ import 'dart:io';
 import 'BJNetworkDetail.dart';
 
 class BJNetwork extends StatefulWidget {
-
   @override
   BJNetworkState createState() => BJNetworkState();
 }
@@ -14,8 +13,8 @@ class BJNetworkState extends State<BJNetwork> {
   String _text = "";
 
   void _requestData() async {
-    
-    var url = 'http://v.juhe.cn/toutiao/index?key=c76f60c92d392d0a59d7cac0cae97a44';
+    var url =
+        'http://v.juhe.cn/toutiao/index?key=c76f60c92d392d0a59d7cac0cae97a44';
     var httpClient = new HttpClient();
 
     try {
@@ -24,14 +23,13 @@ class BJNetworkState extends State<BJNetwork> {
       if (response.statusCode == HttpStatus.OK) {
         var json = await response.transform(utf8.decoder).join();
         var data = jsonDecode(json);
-        var myData = data['result']['data'];  
+        var myData = data['result']['data'];
         setState(() {
           _words = myData;
         });
         print(myData);
       } else {
-        _text =
-            'Error getting IP address:\nHttp status ${response.statusCode}';
+        _text = 'Error getting IP address:\nHttp status ${response.statusCode}';
       }
     } catch (exception) {
       _text = 'Failed getting IP address';
@@ -39,30 +37,31 @@ class BJNetworkState extends State<BJNetwork> {
   }
 
   @override
-    void initState() {
-      super.initState();
-      _requestData();
-    }
+  void initState() {
+    super.initState();
+    _requestData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("网络"),
+        title: Text("Data"),
       ),
       body: new ListView.builder(
         padding: new EdgeInsets.all(15.0),
         itemExtent: 60.0,
         itemCount: _words.length,
-        itemBuilder: (BuildContext context,int index){
+        itemBuilder: (BuildContext context, int index) {
           var objc = _words[index];
           var title = objc['title'];
           return new GestureDetector(
             onTap: () {
               print('点击了item');
               Navigator.push(
-                context, 
-                new MaterialPageRoute(builder: (context) => new BJNetworkDetail()),
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new BJNetworkDetail()),
               );
             },
             child: new Container(

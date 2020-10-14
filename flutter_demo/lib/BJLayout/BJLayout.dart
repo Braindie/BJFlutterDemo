@@ -11,19 +11,17 @@ class BJLayout extends StatefulWidget {
 class BJLayoutState extends State<BJLayout> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // Scaffold是一个路由页的骨架
-      appBar: AppBar(
-        title: Text('布局'),
-      ),
-      body: new ListView(
-        children: <Widget>[
+    return Scaffold(
+        // Scaffold是一个路由页的骨架
+        appBar: AppBar(
+          title: Text('Layout'),
+        ),
+        body: new ListView(children: <Widget>[
           HeaderImge(),
           HeaderText(),
           ButtonSection(),
           FooterSection()
-        ]
-      )
-    );
+        ]));
   }
 }
 
@@ -32,11 +30,10 @@ class HeaderImge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(0),
-      child: Image(
-        image: AssetImage('lib/images/mess.jpg'),
-      )
-    );
+        padding: const EdgeInsets.all(0),
+        child: Image(
+          image: AssetImage('lib/images/mess.jpg'),
+        ));
   }
 }
 
@@ -44,7 +41,8 @@ class HeaderImge extends StatelessWidget {
 class HeaderText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container( // 组合类容器
+    return Container(
+      // 组合类容器
       padding: const EdgeInsets.all(32.0),
       child: new Row(
         children: [
@@ -63,10 +61,7 @@ class HeaderText extends StatelessWidget {
                 ),
                 new Text(
                   '我是副标题',
-                  style: new TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: 12
-                  ),
+                  style: new TextStyle(color: Colors.grey[500], fontSize: 12),
                 ),
               ],
             ),
@@ -108,7 +103,9 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
         new Container(
           padding: new EdgeInsets.all(0.0),
           child: new IconButton(
-            icon: (_isFavorited ? new Icon(Icons.star) : new Icon(Icons.star_border)),
+            icon: (_isFavorited
+                ? new Icon(Icons.star)
+                : new Icon(Icons.star_border)),
             color: Colors.red[500],
             onPressed: _touchFavorite,
           ),
@@ -127,9 +124,9 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
 // 按钮
 class ButtonSection extends StatelessWidget {
   @override
-  Widget build(BuildContext content){
+  Widget build(BuildContext content) {
     // 自定义按钮
-    Column buildButtonColumn(IconData icon, String label){
+    Column buildButtonColumn(IconData icon, String label) {
       return new Column(
         mainAxisSize: MainAxisSize.min, // 聚集在一起
         mainAxisAlignment: MainAxisAlignment.center,
@@ -137,16 +134,12 @@ class ButtonSection extends StatelessWidget {
           new Icon(icon, color: Colors.blue),
           new Container(
             margin: const EdgeInsets.only(top: 8.0),
-            child: new Text(
-              label,
-              style: new TextStyle(
-                fontSize: 12.0
-              )
-            ),
+            child: new Text(label, style: new TextStyle(fontSize: 12.0)),
           )
         ],
       );
     }
+
     return Container(
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -175,4 +168,3 @@ class FooterSection extends StatelessWidget {
     );
   }
 }
-
