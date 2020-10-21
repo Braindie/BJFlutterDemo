@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:io';
@@ -14,13 +16,20 @@ class BJNetworkState extends State<BJNetwork> {
 
   void _requestData() async {
     var url =
-        'http://v.juhe.cn/toutiao/index?key=c76f60c92d392d0a59d7cac0cae97a44';
+        'https://v.juhe.cn/toutiao/index?key=c76f60c92d392d0a59d7cac0cae97a44';
     var httpClient = new HttpClient();
 
-    try {
-      var request = await httpClient.getUrl(Uri.parse(url));
-      var response = await request.close();
-      if (response.statusCode == HttpStatus.OK) {
+    httpClient.getUrl(Uri.parse(url)).then((HttpClientRequest request) {
+      // Optionally set up headers...
+      // Optionally write to the request object...
+      // Then call close.
+
+      return request.close();
+    }).then((HttpClientResponse response) async {
+      // Process the response.
+      print('result');
+      print(response);
+      if (response.statusCode == HttpStatus.ok) {
         var json = await response.transform(utf8.decoder).join();
         var data = jsonDecode(json);
         var myData = data['result']['data'];
@@ -30,15 +39,15 @@ class BJNetworkState extends State<BJNetwork> {
         print(myData);
       } else {
         _text = 'Error getting IP address:\nHttp status ${response.statusCode}';
+        print(_text);
       }
-    } catch (exception) {
-      _text = 'Failed getting IP address';
-    }
+    });
   }
 
   @override
   void initState() {
     super.initState();
+    print('开始网络请求');
     _requestData();
   }
 
@@ -49,7 +58,7 @@ class BJNetworkState extends State<BJNetwork> {
         title: Text("Data"),
       ),
       body: new ListView.builder(
-        padding: new EdgeInsets.all(15.0),
+        padding: new EdgeInsets.fromLTRB(10, 20, 10, 20),
         itemExtent: 60.0,
         itemCount: _words.length,
         itemBuilder: (BuildContext context, int index) {
